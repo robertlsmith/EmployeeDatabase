@@ -142,6 +142,16 @@ public class Employee {
         }
     }
 
+    public static void listEmployeesByJobLocation(String location) {
+        for (Employee emp : employees) {
+            if (emp.getJobLocation().equalsIgnoreCase(location)) {
+                emp.displayEmployeeDetails();
+                System.out.println();
+            }
+        }
+    }
+ 
+
     public void updateDetails(String SOEID, String firstName, String lastName, String department, String jobLocation, String jobTitle, String dateHired) {
         this.SOEID = SOEID;
         this.firstName = firstName;
@@ -158,4 +168,9 @@ public class Employee {
         displayAllEmployees();
     }
     
+    public static void sortEmployeesByDateHired(){
+        employees.sort(Comparator.comparing(Employee::getDateHired));
+        displayAllEmployees();
+    }
+ 
 }

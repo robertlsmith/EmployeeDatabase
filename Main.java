@@ -55,5 +55,13 @@ public class Main {
         // Sort Employees by Name
         System.out.println("\nSorting Employees by Name:");
         Employee.sortEmployeesByName();
+
+        // Sort Employees By Date Hired
+        System.out.println("\nEmployees by Date Hired:");
+        Employee.sortEmployeesByDateHired();
+
+        // List Employees By Job Location
+        System.out.println("\nListing Employees by Job Location: 'New York':");
+        Employee.listEmployeesByJobLocation("New York");
     }
 }
