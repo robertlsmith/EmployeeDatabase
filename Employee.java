@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -122,4 +123,39 @@ public class Employee {
             System.out.println();
         }
     }
+
+    public static void listEmployeesByDepartment(String department) {
+        for (Employee emp : employees) {
+            if (emp.getDepartment().equalsIgnoreCase(department)) {
+                emp.displayEmployeeDetails();
+                System.out.println();
+            }
+        }
+    }
+    
+    public static void listEmployeesByJobTitle(String jobTitle) {
+        for (Employee emp : employees) {
+            if (emp.getJobTitle().equalsIgnoreCase(jobTitle)) {
+                emp.displayEmployeeDetails();
+                System.out.println();
+            }
+        }
+    }
+
+    public void updateDetails(String SOEID, String firstName, String lastName, String department, String jobLocation, String jobTitle, String dateHired) {
+        this.SOEID = SOEID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.department = department;
+        this.jobLocation = jobLocation;
+        this.jobTitle = jobTitle;
+        this.dateHired = dateHired;
+        System.out.println("Employee details updated successfully.");
+    }
+
+    public static void sortEmployeesByName() {
+        employees.sort(Comparator.comparing(Employee::fullName));
+        displayAllEmployees();
+    }
+    
 }
