@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Employee Database</title>
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
-  <body>
+  <body align="center">
     <h1>Add New Employee</h1>
     <form action = "AddEmployee" method="post">
       <label for ="soeid">SOEID:</label><br>
@@ -17,7 +18,7 @@
       <label for="lastName">Last Name:</label><br>
       <input type="text" id="lastName" name="lastName"><br>
 
-      <lable for="department">Department:</lable><br>
+      <label for="department">Department:</label><br>
       <input type="text" id="department" name="department"><br>
 
       <label for="jobLocation">Job Location:</label><br>
@@ -29,9 +30,9 @@
       <label for="dateHired">Date Hired:</label><br>
       <input type="text" id="dateHired" name="dateHired"><br>
 
-      <input type="submit" value="Submit">
+      <button type="submit" value="Submit">
+        <p>Submit</p>
+      </button>
     </form>
-      
-    <img src="" alt="Logo" />
   </body>
 </html>
