@@ -21,8 +21,24 @@ public class Employee {
         this.jobLocation = jobLocation;
         this.jobTitle = jobTitle;
         this.dateHired = dateHired;
-        employees.add(this);
 
+        addEmployee(this);
+    }
+
+
+    public boolean checkSOEID (String SOEID){
+        for(Employee emp: employees){
+            if(emp.getSOEID().equals(SOEID)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addEmployee(Employee emp){
+        if(!checkSOEID(emp.getSOEID())){
+            employees.add(this);
+        }
     }
 
     public String getSOEID() {
@@ -96,7 +112,7 @@ public class Employee {
 
     public static void findEmployeeBySOEID(String SOEID) {
         for (Employee emp : employees) {
-            if (emp.getSOEID() == SOEID) {
+            if (emp.getSOEID().equals(SOEID)) {
                 System.out.println(emp.fullName());
                 return;
             } 
@@ -108,7 +124,7 @@ public class Employee {
         Iterator<Employee> iterator = employees.iterator();
         while (iterator.hasNext()) {
             Employee emp = iterator.next();
-            if (emp.getSOEID() == SOEID) {
+            if (emp.getSOEID().equals(SOEID)) {
                 iterator.remove();
                 System.out.println("Successfully removed employee.");
                 return;

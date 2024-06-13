@@ -2,6 +2,7 @@ public class Main {
     public static void main(String[] args) {
         // Creating 10 Employee objects
         Employee emp1 = new Employee("E001", "John", "Doe", "IT", "New York", "Developer", "2020-01-15");
+        Employee empCopy1= new Employee("E001", "Mark", "Grey", "IT", "Tampa", "Developer", "2020-07-10");
         Employee emp2 = new Employee("E002", "Jane", "Smith", "HR", "London", "Manager", "2019-03-12");
         Employee emp3 = new Employee("E003", "Alice", "Johnson", "Finance", "Sydney", "Analyst", "2018-07-22");
         Employee emp4 = new Employee("E004", "Bob", "Brown", "IT", "New York", "Developer", "2019-11-05");
@@ -12,7 +13,10 @@ public class Main {
         Employee emp9 = new Employee("E009", "Jennifer", "Lee", "IT", "London", "Engineer", "2021-03-25");
         Employee emp10 = new Employee("E010", "Daniel", "Taylor", "Finance", "New York", "Analyst", "2022-05-15");
 
-        // Display all employees
+
+
+
+       // Display all employees
         System.out.println("All Employees:");
         Employee.displayAllEmployees();
 
@@ -63,5 +67,6 @@ public class Main {
         // List Employees By Job Location
         System.out.println("\nListing Employees by Job Location: 'New York':");
         Employee.listEmployeesByJobLocation("New York");
+        
     }
 }
