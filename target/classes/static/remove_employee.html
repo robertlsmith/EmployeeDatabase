@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Remove Employee</title>
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+  <body align="center">
+    <h1>Remove Employee</h1>
+    <form id="removeEmployeeForm" onsubmit="return handleFormSubmit(event)">
+      <label for="soeid">SOEID:</label><br>
+      <input type="text" id="soeid" name="soeid" required><br>
+
+      <button type="submit" value="Submit">
+        Remove
+      </button>
+    </form>
+
+    <button onclick="window.location.href='index.html'">Back</button>
+
+    <script>
+      function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const soeid = document.getElementById('soeid').value;
+
+        fetch('/employees/remove?soeid=' + soeid, {
+          method: 'POST'
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            return response.text().then(text => { throw new Error(text) });
+          }
+        })
+        .then(data => {
+          alert(data);
+          window.location.href = 'index.html';
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+      }
+    </script>
+  </body>
+</html>

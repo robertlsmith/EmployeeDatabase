@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Search Employee</title>
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+  <body align="center">
+    <h1>Search Employee</h1>
+    <form id="searchEmployeeForm" onsubmit="return handleFormSubmit(event)">
+      <label for="soeid">SOEID:</label><br>
+      <input type="text" id="soeid" name="soeid"><br>
+
+      <button type="submit" value="Submit">
+        Search
+      </button>
+    </form>
+
+    <button onclick="window.location.href='index.html'">Back</button>
+
+    <button id="" onclick="viewAllEmployees()">View All</button>
+    <div id="employeeList"></div>
+
+    <script>
+      function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const soeid = document.getElementById('soeid').value;
+
+        fetch('/employees/search?soeid=' + soeid)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              return response.text().then(text => { throw new Error(text) });
+            }
+          })
+          .then(employee => {
+            const employeeList = document.getElementById('employeeList');
+            employeeList.innerHTML = `
+              <h2>Employee Details</h2>
+              <table>
+                <tr>
+                  <th>SOEID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Department</th>
+                  <th>Job Location</th>
+                  <th>Job Title</th>
+                  <th>Date Hired</th>
+                </tr>
+                <tr>
+                  <td>${employee.soeid}</td>
+                  <td>${employee.firstName}</td>
+                  <td>${employee.lastName}</td>
+                  <td>${employee.department}</td>
+                  <td>${employee.jobLocation}</td>
+                  <td>${employee.jobTitle}</td>
+                  <td>${employee.dateHired}</td>
+                </tr>
+              </table>
+            `;
+          })
+          .catch(error => {
+            alert(error.message);
+          });
+      }
+
+      function viewAllEmployees() {
+        fetch('/employees/all')
+          .then(response => response.json())
+          .then(data => {
+            const employeeList = document.getElementById('employeeList');
+            let tableContent = `
+              <h2>All Employees</h2>
+              <table>
+                <tr>
+                  <th>SOEID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Department</th>
+                  <th>Job Location</th>
+                  <th>Job Title</th>
+                  <th>Date Hired</th>
+                </tr>
+            `;
+            data.forEach(employee => {
+              tableContent += `
+                <tr>
+                  <td>${employee.soeid}</td>
+                  <td>${employee.firstName}</td>
+                  <td>${employee.lastName}</td>
+                  <td>${employee.department}</td>
+                  <td>${employee.jobLocation}</td>
+                  <td>${employee.jobTitle}</td>
+                  <td>${employee.dateHired}</td>
+                </tr>
+              `;
+            });
+            tableContent += `</table>`;
+            employeeList.innerHTML = tableContent;
+          })
+          .catch(error => {
+            console.error('Error fetching employees:', error);
+          });
+      }
+    </script>
+  </body>
+</html>

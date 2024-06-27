@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Remove Employee</title>
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+  <body align="center">
+    <h1>Remove Employee</h1>
+    <form id="removeEmployeeForm" action="RemoveEmployee" method="post" onsubmit="return handleFormSubmit(event)">
+      <label for="soeid">SOEID:</label><br>
+      <input type="text" id="soeid" name="soeid" required><br>
+
+      <button type="submit" value="Submit">
+        <p>Remove</p>
+      </button>
+    </form>
+
+    <script>
+      function handleFormSubmit(event) {
+        event.preventDefault();
+
+        alert('Employee successfully deleted');
+
+        window.location.href = 'index.html';
+      }
+    </script>
+  </body>
+</html>

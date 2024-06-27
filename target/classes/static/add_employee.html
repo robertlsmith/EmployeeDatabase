@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Add New Employee</title>
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+  <body align="center">
+    <h1>Add New Employee</h1>
+    <form id="addEmployeeForm" onsubmit="return handleFormSubmit(event)">
+      <label for="soeid">SOEID:</label><br>
+      <input type="text" id="soeid" name="soeid" required><br>
+
+      <label for="firstName">First Name:</label><br>
+      <input type="text" id="firstName" name="firstName" required><br>
+
+      <label for="lastName">Last Name:</label><br>
+      <input type="text" id="lastName" name="lastName" required><br>
+
+      <label for="department">Department:</label><br>
+      <input type="text" id="department" name="department" required><br>
+
+      <label for="jobLocation">Job Location:</label><br>
+      <input type="text" id="jobLocation" name="jobLocation" required><br>
+
+      <label for="jobTitle">Job Title:</label><br>
+      <input type="text" id="jobTitle" name="jobTitle" required><br>
+
+      <label for="dateHired">Date Hired:</label><br>
+      <input type="date" id="dateHired" name="dateHired" required><br>
+
+      <button type="submit" value="Submit">
+        Submit
+      </button>
+      <button onclick="window.location.href='index.html'">Back</button>
+    </form>
+
+    <script>
+      function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const formData = new FormData(document.getElementById('addEmployeeForm'));
+        const jsonData = {};
+        formData.forEach((value, key) => jsonData[key] = value);
+
+        fetch('/employees/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(jsonData)
+        })
+        .then(response => response.text())
+        .then(data => {
+          alert(data);
+          window.location.href = 'index.html';
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      }
+    </script>
+  </body>
+</html>
